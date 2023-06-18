@@ -9,8 +9,8 @@ import (
 	"log"
 	"time"
 
-	"gitee.com/zhenxinma/gorpc/pkg/client"
-	"gitee.com/zhenxinma/gorpc/pkg/server"
+	"github.com/xmopen/gorpc/pkg/client"
+	"github.com/xmopen/gorpc/pkg/server"
 )
 
 func main() {

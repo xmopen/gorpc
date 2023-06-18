@@ -1,4 +1,4 @@
-module gitee.com/zhenxinma/gorpc
+module github.com/xmopen/gorpc
 
 go 1.18
 
@@ -9,6 +9,5 @@ require (
 
 require (
 	github.com/sirupsen/logrus v1.8.1 // indirect
-	github.com/stretchr/testify v1.5.1 // indirect
 	golang.org/x/sys v0.3.0 // indirect
 )

@@ -6,7 +6,7 @@ import (
 	"unicode"
 	"unicode/utf8"
 
-	"gitee.com/zhenxinma/gorpc/pkg/core"
+	"github.com/xmopen/gorpc/pkg/core"
 )
 
 // Service 服务具体结构.

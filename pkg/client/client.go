@@ -8,13 +8,10 @@ import (
 	"net"
 	"time"
 
-	"gitee.com/zhenxinma/gorpc/pkg/netpoll"
-
-	"gitee.com/zhenxinma/gorpc/pkg/pack"
-
-	"gitee.com/zhenxinma/gorpc/pkg/errcode"
-
 	"gitee.com/zhenxinma/gocommon/pkg/xlogging"
+	"github.com/xmopen/gorpc/pkg/errcode"
+	"github.com/xmopen/gorpc/pkg/netpoll"
+	"github.com/xmopen/gorpc/pkg/pack"
 )
 
 var DefaultTimeOut = 15 * time.Second

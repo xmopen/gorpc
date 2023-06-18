@@ -13,8 +13,8 @@ import (
 	"time"
 
 	"gitee.com/zhenxinma/gocommon/pkg/xlogging"
-	"gitee.com/zhenxinma/gorpc/pkg/core"
-	"gitee.com/zhenxinma/gorpc/pkg/pack"
+	"github.com/xmopen/gorpc/pkg/core"
+	"github.com/xmopen/gorpc/pkg/pack"
 )
 
 const (

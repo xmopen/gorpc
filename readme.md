@@ -1,9 +1,6 @@
 # 一、使用Demo.
 
 ```go
-// Package go_rpc.
-// creator 2022-03-27 09:20:25
-// Author  zhenxinma.
 package main
 
 import (
@@ -12,12 +9,13 @@ import (
 	"log"
 	"time"
 
-	"gitee.com/zhenxinma/go_rpc/pkg/client"
-	"gitee.com/zhenxinma/go_rpc/pkg/server"
+	"github.com/xmopen/gorpc/pkg/client"
+	"github.com/xmopen/gorpc/pkg/server"
 )
 
 func main() {
 
+	// test git add.1
 	go func() {
 		s := server.NewServer()
 		s.SetTrace(true)
@@ -73,13 +71,9 @@ func (r *RPCServer) Add(c context.Context, args *Args, res *Response) error {
 	for i := 0; i < 10; i++ {
 		res.Data.List = append(res.Data.List, i)
 	}
-	time.Sleep(2 * time.Second)
+	//time.Sleep(2 * time.Second)
 	return nil
 }
-
-
-//  输出结果.
-2022-09-17 20:18:54.742[gorpc.client][INFO]servicename:RPCServer methodname:Add calltime:2s result:&{Result:hello word张三 Age:1000 Data:{List:[0 1 2 3 4 5 6 7 8 9]}}[D:/code/go/src/me.code/gorpc/pkg/client/client.go:98]
 
 ```
 

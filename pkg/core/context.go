@@ -6,9 +6,8 @@ import (
 	"reflect"
 	"sync"
 
-	"gitee.com/zhenxinma/gorpc/pkg/errcode"
-
-	"gitee.com/zhenxinma/gorpc/pkg/pack"
+	"github.com/xmopen/gorpc/pkg/errcode"
+	"github.com/xmopen/gorpc/pkg/pack"
 )
 
 // RPCContext rpc Context Client/Server通用.

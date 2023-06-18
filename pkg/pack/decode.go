@@ -7,7 +7,7 @@ import (
 	"io"
 	"time"
 
-	"gitee.com/zhenxinma/gorpc/pkg/util"
+	"github.com/xmopen/gorpc/pkg/util"
 )
 
 const (

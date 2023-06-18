@@ -1,6 +1,6 @@
 package server
 
-import "gitee.com/zhenxinma/gorpc/pkg/errcode"
+import "github.com/xmopen/gorpc/pkg/errcode"
 
 // PluginContainer 插件接口.
 type PluginContainer interface {
