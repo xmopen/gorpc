@@ -14,8 +14,6 @@ const (
 	defaultHeaderLength = 20
 )
 
-// 解码.
-
 // Decode Message Decode.
 // []byte ---> Message Struct.
 // TODO: 待优化:使用对象池.

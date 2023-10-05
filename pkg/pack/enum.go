@@ -1,7 +1,6 @@
 package pack
 
 // enum 定义Message编解码需要使用到的常量.
-
 const (
 	MagicNumber byte = 0b1001 // 魔数:9.
 

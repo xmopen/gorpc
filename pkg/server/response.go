@@ -6,7 +6,8 @@ import (
 	"reflect"
 	"runtime/debug"
 
-	"gitee.com/zhenxinma/golib/pkg/xlogging"
+	"github.com/xmopen/golib/pkg/xlogging"
+
 	"github.com/xmopen/gorpc/pkg/core"
 	"github.com/xmopen/gorpc/pkg/errcode"
 	"github.com/xmopen/gorpc/pkg/pack"

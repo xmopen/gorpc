@@ -45,7 +45,7 @@ type PoolConfig struct {
 	MaxIdleTimeout int64 // 最大空闲等待时间,单位秒.
 }
 
-//  ConnPool 连接池具体实现.
+// ConnPool 连接池具体实现.
 type ConnPool struct {
 	queue      *queue
 	poolConfig *PoolConfig

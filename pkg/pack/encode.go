@@ -4,6 +4,7 @@ import (
 	"encoding/binary"
 )
 
+// 自定义协议
 const (
 	ProtocolMargic  = uint8(98) // 魔数.
 	ProtocolVersion = uint8(8)
@@ -12,17 +13,13 @@ const (
 	ProtocolNullFiled = uint32(0) // 协议中为空的属性.
 )
 
-// 编码.
-
+// RPC Request Type
 const (
 	RPCTypeConnType     RpcConnType = iota
 	RPCTypePeerConnType             // 1
 )
 
 type RpcConnType = uint8
-
-// rpcx:server.340 response.
-// rpcx:server 652 readRequest.
 
 /*
 1. 向字节数组中写入数据.

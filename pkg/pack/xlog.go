@@ -1,6 +1,6 @@
 package pack
 
-import "gitee.com/zhenxinma/gocommon/pkg/xlogging"
+import "github.com/xmopen/golib/pkg/xlogging"
 
 var (
 	xlog = xlogging.Tag("go_rpc.pack")

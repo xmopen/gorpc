@@ -8,6 +8,7 @@ type ErrorMessage struct {
 	Message string
 }
 
+// NewError return a ErrorMessage instance
 func NewError(code int64, msg string) *ErrorMessage {
 	return &ErrorMessage{
 		Code:    code,

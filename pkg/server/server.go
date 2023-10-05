@@ -12,7 +12,8 @@ import (
 	"sync"
 	"time"
 
-	"gitee.com/zhenxinma/gocommon/pkg/xlogging"
+	"github.com/xmopen/golib/pkg/xlogging"
+
 	"github.com/xmopen/gorpc/pkg/core"
 	"github.com/xmopen/gorpc/pkg/pack"
 )

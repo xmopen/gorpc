@@ -8,7 +8,7 @@ import (
 	"net"
 	"time"
 
-	"gitee.com/zhenxinma/gocommon/pkg/xlogging"
+	"github.com/xmopen/golib/pkg/xlogging"
 	"github.com/xmopen/gorpc/pkg/errcode"
 	"github.com/xmopen/gorpc/pkg/netpoll"
 	"github.com/xmopen/gorpc/pkg/pack"
