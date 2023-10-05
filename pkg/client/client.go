@@ -42,6 +42,12 @@ type OptionConfig struct {
 	Xlog          *xlogging.Entry
 }
 
+// ClientConfig gorpc client config
+type ClientConfig struct {
+	Network string
+	Addr    string
+}
+
 // NewClient 返回一个客户端,如果err为空,则client则是可用的.
 // TODO: 连接池.
 func NewClient(network, addr string, cfg *OptionConfig) (*Client, error) {
