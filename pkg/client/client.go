@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"io"
 	"net"
 	"time"
@@ -14,8 +15,12 @@ import (
 	"github.com/xmopen/gorpc/pkg/pack"
 )
 
-var DefaultTimeOut = 15 * time.Second
-var DefaultServerTimeout = 10 * time.Second
+var (
+	DefaultTimeOut       = 15 * time.Second
+	DefaultServerTimeout = 10 * time.Second
+	defaultMaxTryTimes   = 1
+	defaultNetwork       = "tcp"
+)
 
 // Client RPC Client.
 type Client struct {
@@ -44,14 +49,31 @@ type OptionConfig struct {
 
 // ClientConfig gorpc client config
 type ClientConfig struct {
-	Network string
-	Addr    string
+	Network     string
+	Addr        string
+	MaxTryTimes int // MaxTryTimes maximum number of retries in case of failure
 }
 
 // NewClient 返回一个客户端,如果err为空,则client则是可用的.
-// TODO: 连接池.
 func NewClient(network, addr string, cfg *OptionConfig) (*Client, error) {
+	return newClient(network, addr, cfg)
+}
 
+// NewClientWithConfig return a client instance from config
+func NewClientWithConfig(config *ClientConfig) (*Client, error) {
+	if config == nil || config.Addr == "" {
+		return nil, fmt.Errorf("config addr is empty")
+	}
+	if config.Network == "" {
+		config.Network = defaultNetwork
+	}
+	if config.MaxTryTimes == 0 {
+		config.MaxTryTimes = defaultMaxTryTimes
+	}
+	return newClient(config.Network, config.Addr, nil)
+}
+
+func newClient(network, addr string, cfg *OptionConfig) (*Client, error) {
 	c := &Client{
 		ClientTimeout: DefaultTimeOut,
 		ServerTimeout: DefaultServerTimeout,
