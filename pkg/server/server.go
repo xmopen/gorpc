@@ -137,10 +137,8 @@ func (s *Server) serverListener(ln net.Listener) error {
 				time.Sleep(tempDelay)
 				continue
 			}
-			// todo: err.
 		}
 
-		// 正常应该如何进行处理.
 		if tc, ok := conn.(*net.TCPConn); ok {
 			// 设置心跳保活.
 			period := s.options["TCPKeepAlivePeriod"]
@@ -167,7 +165,6 @@ func (s *Server) serverListener(ln net.Listener) error {
 
 // server 核心处理逻辑.
 func (s *Server) server(conn net.Conn) {
-
 	defer func() {
 		if err := recover(); err != nil {
 			// panic.
@@ -193,11 +190,9 @@ func (s *Server) server(conn net.Conn) {
 	if s.readTimeout != 0 {
 		conn.SetReadDeadline(now.Add(s.readTimeout))
 	}
-
 	ctx := core.WithValue(context.Background(), RpcContextRemoteAddrKey, conn.RemoteAddr().String())
 	ctx.SetConn(conn)
 
-	// 先不设置大小了吧.
 	buffer := bufio.NewReaderSize(conn, BufferReaderSize)
 	for {
 

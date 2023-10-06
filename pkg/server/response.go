@@ -21,9 +21,6 @@ var (
 
 // response 处理响应.
 func (s *Server) response(ctx *core.RPCContext) {
-
-	//c, cancel := context.WithTimeout(ctx, ctx.Req.Timeout)
-	//defer cancel()
 	defer func() {
 		if err := recover(); err != nil {
 			xlogging.Tag("gorpc.response").Errorf("panic:[%+v]", string(debug.Stack()))
@@ -37,27 +34,17 @@ func (s *Server) response(ctx *core.RPCContext) {
 	// 正常处理.
 	rsp, err := s.handleRequest(ctx)
 	if err != nil {
-		s.xlog.Errorf("handleRequest err:%v", err)
-		// TODO: 结算写入结构返回给客户端也应该遵循编码结构.
-		return
+		if s.trace {
+			s.xlog.Errorf("handleRequest err:%v", err)
+		}
+		rsp = pack.NewPackMessage()
+		rsp.Data = []byte(err.Error())
+		rsp.Type = uint8(pack.RPCRequestTypeOfResponseError)
 	}
 	err = ctx.WriteResponse(rsp)
 	if err != nil {
 		s.xlog.Errorf("service: %s method:%s write response err:%v", ctx.Req.ServicePath, ctx.Req.ServiceMethod, err)
 	}
-
-	// An established connection was aborted by the software in your host machine
-	//for {
-	//	select {
-	//	case <-c.Done():
-	//		rsp := pack.NewPackMessage()
-	//		rsp.Type = pack.MessageTypeServerTimeout
-	//		err := ctx.WriteResponse(rsp)
-	//		if err != nil {
-	//			s.xlog.Errorf("write timeout message err:%v", err)
-	//		}
-	//	}
-	//}
 }
 
 // handleRequest 处理请求.

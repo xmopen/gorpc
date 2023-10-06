@@ -14,7 +14,6 @@ import (
 )
 
 func main() {
-
 	// test git add.1
 	go func() {
 		s := server.NewServer()
@@ -40,8 +39,7 @@ func main() {
 	response := &Response{}
 	err = c.Call(context.Background(), "RPCServer", "Add", args, response)
 	if err != nil {
-		// timeout.
-		log.Fatalln(err)
+		fmt.Println(err.Error())
 	}
 }
 
@@ -62,15 +60,17 @@ type Response struct {
 type RPCServer struct {
 }
 
+// Add return a err test
 func (r *RPCServer) Add(c context.Context, args *Args, res *Response) error {
-	res.Result = "hello word" + args.Name
-	res.Age = 10 * args.Age
-	if res.Data.List == nil {
-		res.Data.List = make([]int, 0, 10)
-	}
-	for i := 0; i < 10; i++ {
-		res.Data.List = append(res.Data.List, i)
-	}
+	return fmt.Errorf("add err")
+	//res.Result = "hello word" + args.Name
+	//res.Age = 10 * args.Age
+	//if res.Data.List == nil {
+	//	res.Data.List = make([]int, 0, 10)
+	//}
+	//for i := 0; i < 10; i++ {
+	//	res.Data.List = append(res.Data.List, i)
+	//}
 	//time.Sleep(2 * time.Second)
-	return nil
+	//return nil
 }

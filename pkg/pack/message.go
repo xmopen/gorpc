@@ -12,6 +12,15 @@ const (
 	MessageTypePeerRPCResponse = uint8(125)
 )
 
+// RPCRequestType rpc request type
+type RPCRequestType uint8
+
+const (
+	RPCRequestTypeOfRequest RPCRequestType = iota
+	RPCRequestTypeOfResponse
+	RPCRequestTypeOfResponseError
+)
+
 // HeaderSource 消息头源.
 type HeaderSource [20]byte
 

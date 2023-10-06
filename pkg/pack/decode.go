@@ -16,7 +16,6 @@ const (
 
 // Decode Message Decode.
 // []byte ---> Message Struct.
-// TODO: 待优化:使用对象池.
 func (m *Message) Decode(req io.Reader) error {
 
 	// 这里提前读取Header是应为如果本次请求是不安全的是伪造的,那么后面就不需要去解析了.

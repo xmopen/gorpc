@@ -143,17 +143,14 @@ func (c *Client) Call(ctx context.Context, serviceName string, methodName string
 
 // Go 具体远程调用实现逻辑.
 func (c *Client) Go(ctx context.Context, sn string, mn string, args interface{}, resp interface{}) {
-
 	defer func() {
 		if err := recover(); err != nil {
-			//发生panic.
 			c.Xlog.Errorf("client.Go recover err:%v", err)
 			c.DoneError(errcode.ClientCallPanicError)
 		}
 	}()
 
 	err := c.send(ctx, sn, mn, args, resp)
-	// 如何将Timeout转换成int.
 	if err != nil {
 		c.Xlog.Errorf("gorpc client.send err:%v", err)
 		c.DoneError(err)
@@ -217,7 +214,6 @@ func (c *Client) send(ctx context.Context, sn, mn string, args, resp interface{}
 
 // readResponse client read response from server.
 func (c *Client) readResponse(response interface{}) error {
-
 	// 客户端主动关闭,Server端读取数据会发生EOF.
 	resp := pack.NewPackMessage()
 	err := resp.Decode(c.conn)
@@ -234,13 +230,12 @@ func (c *Client) readResponse(response interface{}) error {
 		}
 		return err
 	}
-
-	// 其实这里应该责任链控制.
-	// 是否超时控制.
 	if resp.Type == pack.MessageTypeServerTimeout {
 		return errcode.ClientCallTimeOut
 	}
-
+	if resp.Type == uint8(pack.RPCRequestTypeOfResponseError) {
+		return fmt.Errorf("call server err:[%+v]", string(resp.Data))
+	}
 	if len(resp.Data) > 0 {
 		err = json.Unmarshal(resp.Data, response)
 		if err != nil {
